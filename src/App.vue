@@ -1,4 +1,6 @@
 <script setup>
+import Board from "./components/Board.vue";
+import Score from "./components/Score.vue";
 </script>
 
 <template>
@@ -7,38 +9,9 @@
   </div>
 
   <div class="game">
-    <div class="board">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square">
-        <div class="x"></div>
-      </div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square">
-        <div class="o"></div>
-      </div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
-    <div class="score">
-      <div class="score-block">
-        <div class="score-title">Игрок</div>
-        <div class="score-result">0</div>
-      </div>
-      <div class="score-block">
-        <div class="score-title">Компьютер</div>
-        <div class="score-result">0</div>
-      </div>
-      <div class="score-block">
-        <div class="score-title">Ничья</div>
-        <div class="score-result">0</div>
-      </div>
-    </div>
+    <Board/>
+    <Score/>
   </div>
-
-
 </template>
 
 <style scoped>
