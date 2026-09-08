@@ -12,7 +12,12 @@ const board = ref([
 function doMoveHandler(i, j, value) {
   board.value[i][j] = value;
 
-  botMove();
+  if (gameProcess.checkPlayerWin(board.value, 'x')) {
+    // user win
+    alert('user win');
+  } else {
+    botMove();
+  }
 }
 
 function botMove() {
@@ -20,6 +25,13 @@ function botMove() {
     const botMoving = gameProcess.botMoving(board.value);
     if (botMoving) {
       board.value[botMoving.i][botMoving.j] = 'o';
+      if (gameProcess.checkPlayerWin(board.value, 'o')) {
+        // bot win
+        alert('bot win');
+      }
+    } else {
+      // draw game
+      alert('draw game');
     }
   }, 300);
 }

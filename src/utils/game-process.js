@@ -24,5 +24,28 @@ export default {
             }
         }
         return cells;
+    },
+    checkPlayerWin(board, sign) {
+        for (let i = 0; i < 3; i++) {
+            if (board[0][i] === sign && board[1][i] === sign && board[2][i] === sign) {
+                return true;
+            }
+        }
+
+        for (let i = 0; i < 3; i++) {
+            if (board[i][0] === sign && board[i][1] === sign && board[i][2] === sign) {
+                return true;
+            }
+        }
+
+        if (board[0][0] === sign && board[1][1] === sign && board[2][2] === sign) {
+            return true;
+        }
+
+        if (board[2][0] === sign && board[1][1] === sign && board[0][2] === sign) {
+            return true;
+        }
+
+        return false;
     }
 };
