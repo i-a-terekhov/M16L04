@@ -1,18 +1,26 @@
 <script setup>
 import Cell from "./Cell.vue";
+import { ref } from "vue";
+
+const board = ref([
+  ['', '', '',],
+  ['', '', '',],
+  ['', '', '',],
+]);
+
+function doMoveHandler(i, j, value) {
+  board.value[i][j] = value;
+}
 </script>
 
 <template>
   <div class="board">
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
-    <Cell/>
+    <template v-for="(iValue, i) in board">
+      <template v-for="(jValue, j) in iValue">
+        <Cell :value="jValue" @do-move="(value) => doMoveHandler(i, j, value)"/>
+      </template>
+    </template>
+
   </div>
 </template>
 

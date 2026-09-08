@@ -1,9 +1,17 @@
 <script setup>
+const props = defineProps(['value']);
+const emit = defineEmits(['doMove']);
+
+function cellClick() {
+  if (!props.value) {
+    emit('doMove', 'x');
+  }
+}
 </script>
 
 <template>
-  <div class="square">
-    <div class="o"></div>
+  <div class="square" @click="cellClick">
+    <div :class="props.value"></div>
   </div>
 </template>
 
