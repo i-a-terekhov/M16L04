@@ -1,6 +1,7 @@
 <script setup>
 import Cell from "./Cell.vue";
 import { ref } from "vue";
+import gameProcess from "../utils/game-process.js";
 
 const board = ref([
   ['', '', '',],
@@ -10,6 +11,17 @@ const board = ref([
 
 function doMoveHandler(i, j, value) {
   board.value[i][j] = value;
+
+  botMove();
+}
+
+function botMove() {
+  setTimeout(() => {
+    const botMoving = gameProcess.botMoving(board.value);
+    if (botMoving) {
+      board.value[botMoving.i][botMoving.j] = 'o';
+    }
+  }, 300);
 }
 </script>
 
