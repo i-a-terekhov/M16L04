@@ -9,8 +9,11 @@ const board = ref([
   ['', '', '',],
   ['', '', '',],
 ]);
+let locked = false;
 
 function doMoveHandler(i, j, value) {
+  if (locked) return true;
+
   board.value[i][j] = value;
 
   if (gameProcess.checkPlayerWin(board.value, 'x')) {
@@ -21,6 +24,7 @@ function doMoveHandler(i, j, value) {
 }
 
 function botMove() {
+  locked = true;
   setTimeout(() => {
     const botMoving = gameProcess.botMoving(board.value);
     if (botMoving) {
@@ -31,6 +35,7 @@ function botMove() {
     } else {
       emit('end', 'draw');
     }
+    locked = false;
   }, 300);
 }
 
