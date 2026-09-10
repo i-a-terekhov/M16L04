@@ -3,6 +3,7 @@ import Cell from "./Cell.vue";
 import { ref } from "vue";
 import gameProcess from "../utils/game-process.js";
 
+const emit = defineEmits(["end"]);
 const board = ref([
   ['', '', '',],
   ['', '', '',],
@@ -13,8 +14,8 @@ function doMoveHandler(i, j, value) {
   board.value[i][j] = value;
 
   if (gameProcess.checkPlayerWin(board.value, 'x')) {
-    // user win
-    alert('user win');
+    emit('end', 'user');
+    endGame();
   } else {
     botMove();
   }
@@ -26,13 +27,23 @@ function botMove() {
     if (botMoving) {
       board.value[botMoving.i][botMoving.j] = 'o';
       if (gameProcess.checkPlayerWin(board.value, 'o')) {
-        // bot win
-        alert('bot win');
+        emit('end', 'bot');
+        endGame();
       }
     } else {
-      // draw game
-      alert('draw game');
+      emit('end', 'draw');
+      endGame();
     }
+  }, 300);
+}
+
+function endGame() {
+  setTimeout(() => {
+    board.value = [
+      ['', '', '',],
+      ['', '', '',],
+      ['', '', '',],
+    ]
   }, 300);
 }
 </script>
