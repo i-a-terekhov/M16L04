@@ -15,7 +15,6 @@ function doMoveHandler(i, j, value) {
 
   if (gameProcess.checkPlayerWin(board.value, 'x')) {
     emit('end', 'user');
-    endGame();
   } else {
     botMove();
   }
@@ -28,11 +27,9 @@ function botMove() {
       board.value[botMoving.i][botMoving.j] = 'o';
       if (gameProcess.checkPlayerWin(board.value, 'o')) {
         emit('end', 'bot');
-        endGame();
       }
     } else {
       emit('end', 'draw');
-      endGame();
     }
   }, 300);
 }
@@ -46,6 +43,8 @@ function endGame() {
     ]
   }, 300);
 }
+
+defineExpose({ endGame });
 </script>
 
 <template>

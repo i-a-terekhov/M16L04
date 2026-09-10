@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "usemodal-vue3": "^0.3.7",
     "vue": "^3.5.40"
   },
   "devDependencies": {
